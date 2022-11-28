@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import ActorGrid from '../components/actors/ActorGrid';
+import ShowGrid from '../components/shows/ShowGrid';
 import { apiGet } from '../misc/config';
 
 const Home = () => {
@@ -25,19 +27,7 @@ const Home = () => {
       return <div>No Results</div>;
     }
     if (results && results.length > 0) {
-      return results[0].show ? (
-        <div>
-          {results.map((item) => (
-            <div key={item.show.id}>{item.show.name}</div>
-          ))}
-        </div>
-      ) : (
-        <div>
-          {results.map((item) => (
-            <div key={item.person.id}>{item.person.name}</div>
-          ))}
-        </div>
-      );
+      return results[0].show ? <ShowGrid data={results}/> : <ActorGrid data={results}/>
     }
     return null;
   };
@@ -45,7 +35,7 @@ const Home = () => {
   const onRadioChange = (ev) => {
     setSearchOption(ev.target.value);
   };
-  
+
   return (
     <div>
       <input
