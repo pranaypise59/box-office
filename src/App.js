@@ -1,26 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
+import Home from './pages/Home';
+import Starred from './pages/Starred';
 import './App.css';
+import RenderMainScreen from './components/RenderMainScreen';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <h1>Box-Show</h1>
+      <p>Get to know about your favorite show and actressess</p>
+      <Routes>
+        <Route exact path='/' element={RenderMainScreen(<Home />)} />
+        <Route exact path='/starred' element={RenderMainScreen(<Starred />)} />
+      </Routes>
+    </Router>
   );
 }
-
 export default App;
