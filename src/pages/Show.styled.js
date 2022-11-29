@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const ShowPageWrapper = styled.div`
+  margin-top: 10px;
   padding: 0 20px;
   @media only screen and (min-width: 516px) {
     padding: 0 40px;
