@@ -1,8 +1,8 @@
 import React from 'react';
 import ShowCard from './ShowCard';
-import { FlexGrid } from '../styled';
+import { FlexGrid} from '../styled';
 import { useShows } from '../../misc/custom-hooks';
-
+// import FadeIn from 'react-fade-in';
 
 const ShowGrid = ({ data }) => {
 
