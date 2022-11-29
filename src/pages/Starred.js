@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import RenderMainScreen from '../components/RenderMainScreen';
 import ShowGrid from '../components/shows/ShowGrid';
 import { apiGet } from '../misc/config';
 import { useShows } from '../misc/custom-hooks'
