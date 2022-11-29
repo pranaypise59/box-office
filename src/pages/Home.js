@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import ActorGrid from '../components/actors/ActorGrid';
+import CustomRadio from '../components/CustomRadio';
 import ShowGrid from '../components/shows/ShowGrid';
 import { apiGet } from '../misc/config';
 import { useLastQuery } from '../misc/custom-hooks';
+import {
+  RadioInputsWrapper,
+  SearchButtonWrapper,
+  SearchInput,
+} from './Home.styled';
 
 const Home = () => {
   const [input, setInput] = useLastQuery();
@@ -28,7 +34,11 @@ const Home = () => {
       return <div>No Results</div>;
     }
     if (results && results.length > 0) {
-      return results[0].show ? <ShowGrid data={results}/> : <ActorGrid data={results}/>
+      return results[0].show ? (
+        <ShowGrid data={results} />
+      ) : (
+        <ActorGrid data={results} />
+      );
     }
     return null;
   };
@@ -39,7 +49,7 @@ const Home = () => {
 
   return (
     <div>
-      <input
+      <SearchInput
         type='text'
         value={input}
         onChange={onInputChange}
@@ -47,31 +57,30 @@ const Home = () => {
         placeholder='search for something'
       />
 
-      <div>
-        <label htmlFor='shows'>
-          Shows
-          <input
-            type='radio'
+      <RadioInputsWrapper>
+        <div>
+          <CustomRadio
+            label='Shows'
             id='shows'
             name='status'
             value='shows'
             checked={searchOption === 'shows'}
             onChange={onRadioChange}
           />
-        </label>
-        <label htmlFor='people'>
-          People
-          <input
-            type='radio'
-            id='people'
-            name='status'
-            value='people'
-            onChange={onRadioChange}
-          />
-        </label>
-      </div>
-
-      <button onClick={onSearch}>Search</button>
+        </div>
+        <div>
+            <CustomRadio
+              label='People'
+              id='people'
+              name='status'
+              value='people'
+              onChange={onRadioChange}
+            />
+        </div>
+      </RadioInputsWrapper>
+      <SearchButtonWrapper>
+        <button onClick={onSearch}>Search</button>
+      </SearchButtonWrapper>
 
       {results && renderResults()}
     </div>
