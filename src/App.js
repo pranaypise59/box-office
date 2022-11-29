@@ -4,7 +4,7 @@ import Starred from './pages/Starred';
 import Show from './pages/Show';
 import './App.css';
 import RenderMainScreen from './components/RenderMainScreen';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
 function App() {
