@@ -9,17 +9,18 @@ import { ThemeProvider } from 'styled-components';
 
 function App() {
   const theme = {
-    mainColors:{
+    mainColors: {
       blue: '#2400ff',
       gray: '#c6c6c6',
       dark: '#353535',
-    }
-  }
+    },
+  };
   return (
     <ThemeProvider theme={theme}>
       <Router>
         <Routes>
           <Route exact path='/' element={RenderMainScreen(<Home />)} />
+
           <Route
             exact
             path='/starred'

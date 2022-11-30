@@ -4,6 +4,7 @@ import CustomRadio from '../components/CustomRadio';
 import ShowGrid from '../components/shows/ShowGrid';
 import { apiGet } from '../misc/config';
 import { useLastQuery } from '../misc/custom-hooks';
+import { motion } from 'framer-motion';
 import {
   RadioInputsWrapper,
   SearchButtonWrapper,
@@ -14,17 +15,17 @@ const Home = () => {
   const [input, setInput] = useLastQuery();
   const [results, setResults] = useState(null);
   const [searchOption, setSearchOption] = useState('shows');
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
   const onInputChange = (ev) => {
     setInput(ev.target.value);
   };
 
   const onSearch = () => {
-    setIsLoading(true)
-    apiGet(`/search/${searchOption}?q=${input}`).then((result) =>
-      {setResults(result)
-      setIsLoading(false)}
-    );
+    setIsLoading(true);
+    apiGet(`/search/${searchOption}?q=${input}`).then((result) => {
+      setResults(result);
+      setIsLoading(false);
+    });
   };
 
   const onKeyDown = (ev) => {
@@ -51,7 +52,11 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <SearchInput
         type='text'
         value={input}
@@ -72,13 +77,13 @@ const Home = () => {
           />
         </div>
         <div>
-            <CustomRadio
-              label='People'
-              id='people'
-              name='status'
-              value='people'
-              onChange={onRadioChange}
-            />
+          <CustomRadio
+            label='People'
+            id='people'
+            name='status'
+            value='people'
+            onChange={onRadioChange}
+          />
         </div>
       </RadioInputsWrapper>
       <SearchButtonWrapper>
@@ -86,7 +91,7 @@ const Home = () => {
       </SearchButtonWrapper>
 
       {results && renderResults()}
-    </div>
+    </motion.div>
   );
 };
 

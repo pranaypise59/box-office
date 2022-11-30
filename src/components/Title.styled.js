@@ -7,7 +7,7 @@ export const TitleWrapper = styled.div`
     color: ${({ theme }) => theme.mainColors.blue};
     letter-spacing: 10px;
     text-transform: uppercase;
-    margin: 0 0 10px;
+    // margin: 0 0 10px;
   }
   p {
     color: ${({ theme }) => theme.mainColors.dark};
