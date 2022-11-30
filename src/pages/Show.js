@@ -4,6 +4,7 @@ import Cast from '../components/shows/Cast';
 import Details from '../components/shows/Details';
 import Seasons from '../components/shows/Seasons';
 import ShowMainData from '../components/shows/ShowMainData';
+import Spinner from '../components/Spinner';
 import { useShow } from '../misc/custom-hooks';
 import { ShowPageWrapper, InfoBlock } from './Show.styled';
 
@@ -12,11 +13,12 @@ const Show = () => {
   const { show, isLoading, error } = useShow(id);
 
   if (isLoading) {
-    return <div>Data is Loading</div>;
+    return <Spinner/>;
   }
   if (error) {
     return <div>Error Occured: {error} </div>;
   }
+  
   return (
     <ShowPageWrapper>
       <ShowMainData

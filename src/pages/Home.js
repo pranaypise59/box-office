@@ -14,13 +14,16 @@ const Home = () => {
   const [input, setInput] = useLastQuery();
   const [results, setResults] = useState(null);
   const [searchOption, setSearchOption] = useState('shows');
+  const [isLoading, setIsLoading] = useState(false)
   const onInputChange = (ev) => {
     setInput(ev.target.value);
   };
 
   const onSearch = () => {
+    setIsLoading(true)
     apiGet(`/search/${searchOption}?q=${input}`).then((result) =>
-      setResults(result)
+      {setResults(result)
+      setIsLoading(false)}
     );
   };
 
@@ -35,9 +38,9 @@ const Home = () => {
     }
     if (results && results.length > 0) {
       return results[0].show ? (
-        <ShowGrid data={results} />
+        <ShowGrid data={results} isLoading={isLoading} />
       ) : (
-        <ActorGrid data={results} />
+        <ActorGrid data={results} isLoading={isLoading} />
       );
     }
     return null;

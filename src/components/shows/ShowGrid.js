@@ -1,24 +1,27 @@
 import React from 'react';
 import ShowCard from './ShowCard';
-import { FlexGrid} from '../styled';
+import { FlexGrid } from '../styled';
 import { useShows } from '../../misc/custom-hooks';
+import Spinner from '../Spinner';
 
-const ShowGrid = ({ data }) => {
+const ShowGrid = ({ data, isLoading }) => {
+  const [starredShows, dispatchStarred] = useShows();
 
-   const [starredShows, dispatchStarred] = useShows()
+  if (isLoading) {
+    return <Spinner />;
+  }
   return (
     <FlexGrid>
       {data.map(({ show }) => {
-
         const isStarred = starredShows.includes(show.id);
 
-        const onStarClick =()=>{
-          if(isStarred){
-            dispatchStarred({type:'REMOVE', showId: show.id})
-          }else{
-            dispatchStarred({type:'ADD', showId:show.id})
+        const onStarClick = () => {
+          if (isStarred) {
+            dispatchStarred({ type: 'REMOVE', showId: show.id });
+          } else {
+            dispatchStarred({ type: 'ADD', showId: show.id });
           }
-        }
+        };
         return (
           <ShowCard
             key={show.id}
