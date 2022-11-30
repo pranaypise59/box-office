@@ -11,7 +11,11 @@ const ShowGrid = ({ data, isLoading }) => {
     return <Spinner />;
   }
   return (
-    <FlexGrid>
+    <FlexGrid
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       {data.map(({ show }) => {
         const isStarred = starredShows.includes(show.id);
 

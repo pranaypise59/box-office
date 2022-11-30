@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import FadeIn from 'react-fade-in';
+import { motion } from 'framer-motion';
 
-export const FlexGrid = styled(FadeIn)`
+export const FlexGrid = styled(motion.div)`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
